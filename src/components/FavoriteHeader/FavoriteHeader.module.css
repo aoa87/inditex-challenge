@@ -1,0 +1,11 @@
+.favorite {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #ffffff;
+}
+
+.favorite img {
+  width: 24px;
+  height: 21.68px;
+}
