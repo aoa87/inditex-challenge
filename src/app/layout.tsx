@@ -4,6 +4,7 @@ import { Roboto_Condensed } from "next/font/google";
 import MainHeader from "@/components/main-header/main-header";
 
 import "./globals.css";
+import { FavoritesProvider } from "@/shared/favorite-context";
 
 export const metadata: Metadata = {
   title: "ZARA Web Challenge",
@@ -23,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={robotoCondensed.className}>
-        <MainHeader />
-        {children}
+        <FavoritesProvider>
+          <MainHeader />
+          {children}
+        </FavoritesProvider>
       </body>
     </html>
   );

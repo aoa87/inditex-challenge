@@ -18,7 +18,7 @@ export default async function CharactersPage() {
   }
 
   return (
-    <div className={classes.character_page}>
+    <div className={classes["character-page"]}>
       <CharactersList characters={characters} />
     </div>
   );

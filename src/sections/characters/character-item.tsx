@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Character } from "@/modules/characters/domain/character";
 
 import classes from "./character-item.module.css";
+import CharacterFavorite from "./character-favorite";
 
 interface CharacterItemProps {
   character: Character;
@@ -15,12 +16,14 @@ const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
         <Image
           src={`${character.thumbnail.path}/standard_xlarge.${character.thumbnail.extension}`}
           alt={`${character.name} thumbnail`}
-          fill
+          width={200}
+          height={200}
         />
         <div className={classes["character-card__red-bar"]}></div>
       </div>
       <div className={classes["character-card__footer"]}>
-        <p>{character.name}</p>
+        <div>{character.name}</div>
+        <CharacterFavorite character={character} />
         <div className={classes["character-card__footer-cut"]}></div>
       </div>
     </div>

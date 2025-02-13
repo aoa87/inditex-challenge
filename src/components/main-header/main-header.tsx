@@ -10,13 +10,13 @@ export default function MainHeader() {
   return (
     <header className={classes.header}>
       <Link className={classes.header__logo} href="/">
-        <Image src={marvelImg} alt="Marvel logo" priority />
+        <Image src={marvelImg} alt="Marvel logo" />
       </Link>
 
       <nav className={classes.header__nav}>
-        <a href="/favorites">
+        <Link href="/favorites">
           <FavoriteHeader />
-        </a>
+        </Link>
       </nav>
     </header>
   );

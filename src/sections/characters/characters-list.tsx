@@ -9,9 +9,11 @@ interface CharactersListProps {
 
 const CharactersList: React.FC<CharactersListProps> = ({ characters }) => {
   return (
-    <div className={classes.characters_container}>
+    <div className={classes["characters-container"]}>
       {characters.map((character) => (
-        <CharacterItem character={character} key={character.id} />
+        <div key={character.id} className={classes["character-item"]}>
+          <CharacterItem character={character} />
+        </div>
       ))}
     </div>
   );

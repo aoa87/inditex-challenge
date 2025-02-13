@@ -1,6 +1,10 @@
-.characters_container {
+.characters-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 16px;
   margin: 0 auto;
+}
+
+.character-item {
+  max-width: 190px;
 }
