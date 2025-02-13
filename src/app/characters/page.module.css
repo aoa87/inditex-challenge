@@ -1,3 +1,9 @@
 .character-page {
-  padding: 40px;
+  padding: 40px 20px;
+}
+
+@media (min-width: 768px) {
+  .favorite-page {
+    padding: 40px;
+  }
 }
