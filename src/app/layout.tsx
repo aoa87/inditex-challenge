@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto_Condensed } from "next/font/google";
 
-import MainHeader from "@/components/MainHeader/MainHeader";
+import MainHeader from "@/components/main-header/main-header";
 
 import "./globals.css";
 

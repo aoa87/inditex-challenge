@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import marvelImg from "@/assets/marvel.png";
-import FavoriteHeader from "@/components/FavoriteHeader/FavoriteHeader";
+import FavoriteHeader from "@/components/favorite-header/favorite-header";
 
-import classes from "./MainHeader.module.css";
+import classes from "./main-header.module.css";
 
 export default function MainHeader() {
   return (
