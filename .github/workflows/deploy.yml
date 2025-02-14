@@ -52,7 +52,9 @@ jobs:
 
         run: |
           npm install -g vercel
-          vercel --prod --confirm --token $VERCEL_TOKEN
+          vercel --prod --confirm --token $VERCEL_TOKEN \
+            -e MARVEL_PUBLIC_KEY=$MARVEL_PUBLIC_KEY \
+            -e MARVEL_PRIVATE_KEY=$MARVEL_PRIVATE_KEY
         id: vercel-deploy
 
       - name: Get Vercel URL
