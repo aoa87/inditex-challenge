@@ -5,7 +5,6 @@ test("should load the main page and fetch characters", async ({ page }) => {
 
   await page.waitForSelector("div[class*='characters-container']", {
     state: "visible",
-    timeout: 10000,
   });
 
   const charactersContainerDiv = await page.locator("div[class*='characters-container']");
