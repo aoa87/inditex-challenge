@@ -13,7 +13,9 @@
     "format:check": "prettier --check .",
     "test": "jest --watch",
     "test:ci": "jest --ci",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "e2e": "playwright test",
+    "e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "next": "15.1.7",
@@ -38,6 +40,7 @@
     "jest-fetch-mock": "^3.0.3",
     "jsdom": "^26.0.0",
     "lint-staged": "^15.4.3",
+    "playwright": "^1.50.1",
     "prettier": "^3.5.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
