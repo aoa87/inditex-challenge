@@ -1,0 +1,56 @@
+name: CI/CD for Next.js App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.vercel-deploy.outputs.url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 22
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint the code
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Run E2E tests
+        run: npm run test:ci
+
+      - name: Deploy to Vercel
+        env:
+          MARVEL_PUBLIC_KEY: ${{ secrets.MARVEL_PUBLIC_KEY }}
+          MARVEL_PRIVATE_KEY: ${{ secrets.MARVEL_PRIVATE_KEY }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npm install -g vercel
+          vercel --prod --confirm --token $VERCEL_TOKEN
+        id: vercel-deploy
+
+      - name: Get Vercel URL
+        run: |
+          echo "Vercel URL: ${{ steps.vercel-deploy.outputs.url }}"
