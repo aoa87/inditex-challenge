@@ -1,0 +1,12 @@
+.carousel {
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: var(--marvel-color);
+}
+
+.carousel__body {
+  display: inline-flex;
+  gap: 16px;
+  padding: 16px 0px;
+}

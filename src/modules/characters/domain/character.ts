@@ -1,4 +1,3 @@
-import { Comic } from "@/modules/comics/domain/comic";
 import { Image } from "@/modules/shared/domain/image";
 
 export interface Character {
@@ -8,5 +7,4 @@ export interface Character {
   modified: Date;
   resourceURI: string;
   thumbnail: Image;
-  comics: Comic[];
 }

@@ -4,6 +4,7 @@ import { Character } from "@/modules/characters/domain/character";
 
 import classes from "./character-item.module.css";
 import CharacterFavorite from "./character-favorite";
+import Link from "next/link";
 
 interface CharacterItemProps {
   character: Character;
@@ -12,19 +13,20 @@ interface CharacterItemProps {
 const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
   return (
     <div className={classes["character-card"]}>
-      <div className={classes["character-card__image"]}>
-        <Image
-          src={`${character.thumbnail.path}/standard_xlarge.${character.thumbnail.extension}`}
-          alt={`${character.name} thumbnail`}
-          width={200}
-          height={200}
-        />
-        <div className={classes["character-card__red-bar"]}></div>
-      </div>
+      <Link href={`/characters/${character.id}`}>
+        <div className={classes["character-card__image"]}>
+          <Image
+            src={`${character.thumbnail.path}/standard_xlarge.${character.thumbnail.extension}`}
+            alt={`${character.name} thumbnail`}
+            width={200}
+            height={200}
+          />
+          <div className={classes["character-card__red-bar"]}></div>
+        </div>
+      </Link>
       <div className={classes["character-card__footer"]}>
         <div>{character.name}</div>
         <CharacterFavorite character={character} />
-        <div className={classes["character-card__footer-cut"]}></div>
       </div>
     </div>
   );

@@ -1,26 +1,43 @@
 import crypto from "crypto";
 import { MarvelResponse } from "../domain/marvel-api";
+import { toQueryParams } from "./query-params-converter";
 
 export const MARVEL_API_URL = "https://gateway.marvel.com/v1/public";
 
-export async function fetchMarvelApi<T>(
-  entity: string,
-  options?: RequestInit,
-): Promise<MarvelResponse<T>> {
-  const ts = new Date().getTime().toString();
+interface fetchMarvelApiParams {
+  path: string;
+  options?: RequestInit;
+  queryParams?: Record<string, string | number>;
+}
+
+export async function fetchMarvelApi<T>({
+  path,
+  options,
+  queryParams = {},
+}: fetchMarvelApiParams): Promise<MarvelResponse<T>> {
+  // This param needs to be hardcoded in order Next.js to cache the response properly
+  const ts = "1";
   const hash = crypto
     .createHash("md5")
     .update(`${ts}${process.env.MARVEL_PRIVATE_KEY}${process.env.MARVEL_PUBLIC_KEY}`)
     .digest("hex");
 
-  // For the moment limit is hardcoded here as we are not implementing pagination
-  const response = await fetch(
-    `${MARVEL_API_URL}/${entity}?ts=${ts}&apikey=${process.env.MARVEL_PUBLIC_KEY}&hash=${hash}&limit=50`,
-    { next: { revalidate: +(process.env.CACHE_EXPIRATION_TIME ?? 0) }, ...options },
-  );
+  const params = {
+    ...queryParams,
+    ts,
+    hash,
+    apikey: process.env.MARVEL_PUBLIC_KEY,
+  };
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${entity} from Marvel API`);
+  const serializedQueryParams = toQueryParams(params);
+
+  const response = await fetch(`${MARVEL_API_URL}/${path}?${serializedQueryParams}`, {
+    next: { revalidate: +(process.env.CACHE_EXPIRATION_TIME ?? 0) },
+    ...options,
+  });
+
+  if (!response.ok && response.status !== 404) {
+    throw new Error(`Failed to fetch ${path} from Marvel API`);
   }
 
   return response.json();

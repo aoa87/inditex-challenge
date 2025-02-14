@@ -1,10 +1,20 @@
 .characters-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 16px;
   margin: 0 auto;
 }
 
 .character-item {
   max-width: 190px;
+}
+
+@media (min-width: 768px) {
+  .characters-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .character-item {
+    max-width: 250px;
+  }
 }

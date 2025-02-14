@@ -1,3 +1,5 @@
+import { Image } from "@/modules/shared/domain/image";
+
 export interface Comic {
   id: number;
   digitalId: number;
@@ -7,4 +9,5 @@ export interface Comic {
   description: string;
   modified: Date;
   isbn: string;
+  thumbnail: Image;
 }
