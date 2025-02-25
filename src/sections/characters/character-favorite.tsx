@@ -30,7 +30,7 @@ const CharacterFavorite: React.FC<CharacterFavoriteProps> = ({ character }) => {
     <Image
       className={classes.favorite}
       src={isSelected ? favoriteImg : favoriteUnselected}
-      alt="Favorite"
+      alt={isSelected ? "Favorite selected" : "Favorite unselected"}
       onClick={favoriteClickHandler}
     />
   );
