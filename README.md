@@ -27,7 +27,7 @@ npm run dev
 ### Production mode
 
 ```bash
-npm build && nom run start
+npm run build && npm run start
 ```
 
 ### Running unit tests
@@ -76,6 +76,18 @@ In addition to this I have decided to implement hexagonal architecture approach 
 - _Separation of concerns_: Hexagonal architecture promotes clear boundaries between the core business logic and external systems (like Next.js). This means that business rules remain agnostic of the UI framework used in this case.
 - _Easier testing_: You can unit test your business logic independently of Next.js or React. Adapters can be easily mocked during tests, ensuring that external dependencies don’t affect your core logic tests.
 - _Maintainability and Scalability_: Dividing the app into layers (such as domain, application, and infrastructure) makes it easier to maintain and extend.
+
+### SOLID
+
+By implementing hexagonal architecture I am forcing to follow SOLID principles. This is more visible in the `modules` folder where files are divided into `domain`, `application` and `infrastructure` folders. For instance, inside application folder each file is only dedicated for one use case following the Single Responsability Principle (SRP). It also uses an interface as repository knowing nothing about the final implementation following the Dependency Inversion Principle (DIP). Interfaces are small and only related to the domain they belong to according to Interface Segregation Principle (ISP).
+
+On the other hand, regarding React components I have clearly made a difference between them for trying to have the cleaner code possible.
+
+- _Page components_: Inside `app` folder I have placed components more related to navigation and to Next.js. The purpose of these components is mainly orchestration, this is, fetching data from API, navigation and global layout. They are focused to be rendered by the server mainly.
+
+- _Section components_: Inside `sections` we can find components related specifically to one section. In this case we only have characters section for this application but if we had more they would be located here. These components should be as naive as possible and depending mainly on the incoming props but can use at the same time hooks or context.
+
+- _Common components_: Inside `components` folder we can find common components more related to UI or user experience and agnostic to the specific domain or page being rendered. These components are very basic and only depending on the props.
 
 ### State management
 
