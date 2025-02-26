@@ -9,7 +9,7 @@ const marvelCharacterRepository = new MarvelCharacterRepository();
 describe("MarvelCharacterRepository", () => {
   it("should fetch all characters successfully", async () => {
     (fetchMarvelApi as jest.Mock).mockImplementation(() =>
-      Promise.resolve({ data: { results: charactersMock } }),
+      Promise.resolve({ data: { results: charactersMock }, code: 200 }),
     );
 
     const characters = await marvelCharacterRepository.findAllCharacters();

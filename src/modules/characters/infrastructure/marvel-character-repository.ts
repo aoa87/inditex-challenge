@@ -3,13 +3,23 @@ import { Character } from "../domain/character";
 import { CharacterRepository } from "../domain/character-repository";
 
 export class MarvelCharacterRepository implements CharacterRepository {
-  async findAllCharacters(): Promise<Character[]> {
+  async findAllCharacters(search?: string): Promise<Character[]> {
+    const queryParams: Record<string, string | number> = {
+      limit: 50,
+    };
+
+    if (search) {
+      queryParams.nameStartsWith = `${encodeURIComponent(search)}`;
+    }
+
     const response = await fetchMarvelApi<Character>({
       path: "characters",
-      queryParams: {
-        limit: 50,
-      },
+      queryParams,
     });
+
+    if (response.code !== 200) {
+      throw new Error(`Error fetching characters: ${response.status}`);
+    }
 
     return response.data.results;
   }

@@ -1,7 +1,14 @@
+import React from "react";
+
+import { SearchParams } from "@/shared/types";
 import CharactersPage from "./characters/page";
 
-const Home = () => {
-  return <CharactersPage />;
+interface HomeProps {
+  searchParams: SearchParams;
+}
+
+const Home: React.FC<HomeProps> = ({ searchParams }) => {
+  return <CharactersPage searchParams={searchParams} />;
 };
 
 export default Home;
