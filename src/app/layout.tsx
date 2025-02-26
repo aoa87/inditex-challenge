@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={robotoCondensed.className}>
         <FavoritesProvider>
           <MainHeader />
-          {children}
+          <main className="container">{children}</main>
         </FavoritesProvider>
       </body>
     </html>
