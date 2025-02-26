@@ -9,6 +9,8 @@ interface CharacterComicProps {
 }
 
 const CharacterComic: React.FC<CharacterComicProps> = ({ comic }) => {
+  const year = new Date(comic.modified).getFullYear();
+
   return (
     <div key={comic.id} className={classes.comic}>
       <Image
@@ -19,7 +21,7 @@ const CharacterComic: React.FC<CharacterComicProps> = ({ comic }) => {
         priority
       />
       <div>{comic.title}</div>
-      <div>{new Date(comic.modified).getFullYear()}</div>
+      <div>{isNaN(year) ? "-" : year}</div>
     </div>
   );
 };
