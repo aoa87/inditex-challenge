@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    minimumCacheTTL: +(process.env.CACHE_EXPIRATION_TIME ?? 60),
   },
 };
 
