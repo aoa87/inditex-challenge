@@ -21,7 +21,6 @@ const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
             width={200}
             height={200}
           />
-          <div className={classes["character-card__red-bar"]}></div>
         </div>
       </Link>
       <div className={classes["character-card__footer"]}>

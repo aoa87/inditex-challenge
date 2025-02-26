@@ -8,6 +8,7 @@
 
 .character-card__image {
   position: relative;
+  background: var(--marvel-color);
 }
 
 .character-card__image img {
@@ -16,15 +17,24 @@
   object-fit: cover;
 }
 
-.character-card__red-bar {
+.character-card__footer::before {
+  background: var(--marvel-color);
+  bottom: 100%;
+  content: "";
+  height: 100%;
+  left: 0;
   position: absolute;
-  bottom: 0;
+  transition: transform 0.3s;
   width: 100%;
-  height: 5.38px;
-  background-color: var(--marvel-color);
+  z-index: -1;
+}
+
+.character-card:hover .character-card__footer::before {
+  transform: translate3d(0, 100%, 0);
 }
 
 .character-card__footer {
+  cursor: pointer;
   background-color: #000;
   color: #fff;
   height: 56px;
@@ -35,11 +45,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.character-card:hover .character-card__footer {
-  background-color: var(--marvel-color);
-  transition: background-color 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 30;
 }
 
 .character-card__footer::after {
